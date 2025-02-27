@@ -34,4 +34,4 @@ def get_entry(title):
         f = default_storage.open(f"entries/{title}.md")
         return f.read().decode("utf-8")
     except FileNotFoundError:
-        return None
+        return(f"#{title.capitalize()}\nEncyclopedia does not have an article with this exact name.")
