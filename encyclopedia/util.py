@@ -34,4 +34,12 @@ def get_entry(title):
         f = default_storage.open(f"entries/{title}.md")
         return f.read().decode("utf-8")
     except FileNotFoundError:
-        return(f"#{title.capitalize()}\nEncyclopedia does not have an article with this exact name.")
+        return None
+
+def search_entry(title):
+    """
+    Retrieves an encyclopedia entry by its title. If no such
+    entry exists, search for similar results to be displayed in
+    a list.
+    """
+    return list(entry for entry in list_entries() if title.lower() in entry.lower())
