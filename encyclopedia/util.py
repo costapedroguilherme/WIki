@@ -1,4 +1,5 @@
 import re
+import random
 
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
@@ -43,3 +44,9 @@ def search_entry(title):
     a list.
     """
     return list(entry for entry in list_entries() if title.lower() in entry.lower())
+
+def get_random():
+    """
+    Retrieves a random page from the encyclopedia.
+    """
+    return random.choice(list_entries())
