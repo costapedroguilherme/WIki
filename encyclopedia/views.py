@@ -60,3 +60,9 @@ def search(request):
         else:
             return HttpResponseRedirect(reverse("index", kwargs={'form': form}))
     return HttpResponseRedirect(reverse("index"))
+
+def random(request):
+    """
+    Retrieves a random encyclopedia entry 
+    """
+    return HttpResponseRedirect(reverse("wiki", kwargs={'title': util.get_random()}))
