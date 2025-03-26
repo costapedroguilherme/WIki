@@ -66,3 +66,27 @@ def random(request):
     Retrieves a random encyclopedia entry 
     """
     return HttpResponseRedirect(reverse("wiki", kwargs={'title': util.get_random()}))
+
+def new(request):
+    """
+    Creates a new encyclopedia entry 
+    """
+    if request.method == "POST":
+        form = request.POST
+        
+        if 'new_page' in form:
+            title = form['title']
+            content = form['content']
+
+            print(title)
+            print(content)
+            if util.new_entry(title, content):
+                return HttpResponseRedirect(reverse("wiki", kwargs={'title': title}))
+            else:
+                return render(request, "encyclopedia/new.html", {
+                    "form": NewTaskForm(),
+                })
+
+    return render(request, "encyclopedia/new.html", {
+        "form": NewTaskForm(),
+    })
